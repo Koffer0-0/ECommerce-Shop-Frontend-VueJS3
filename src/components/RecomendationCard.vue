@@ -5,11 +5,10 @@
         <div class="grid p-6 bg-gray-100 rounded place-content-center sm:p-8">
           <div class="max-w-md mx-auto text-center lg:text-left">
             <header>
-              <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Watches</h2>
+              <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Recommendations</h2>
 
               <p class="mt-4 text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
-                rerum quam amet provident nulla error!
+                Here you can see the our recommendations
               </p>
             </header>
 
@@ -24,11 +23,11 @@
 
         <div class="lg:col-span-2 lg:py-8">
           <ul class="grid grid-cols-2 gap-4">
-            <li>
-              <a href="#" class="block group">
+            <li v-for="product in products" :key="product.id">
+              <router-link :to="`/product/${product.id}`"  class="block group">
                 <img
-                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1598&q=80"
-                    alt=""
+                    :src="product.imageUrl"
+                    :alt="product.name"
                     class="object-cover w-full rounded aspect-square"
                 />
 
@@ -36,32 +35,12 @@
                   <h3
                       class="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4"
                   >
-                    Simple Watch
+                    {{ product.name }}
                   </h3>
 
-                  <p class="mt-1 text-sm text-gray-700">$150</p>
+                  <p class="mt-1 text-sm text-gray-700">{{ product.price }}</p>
                 </div>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="block group">
-                <img
-                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1598&q=80"
-                    alt=""
-                    class="object-cover w-full rounded aspect-square"
-                />
-
-                <div class="mt-3">
-                  <h3
-                      class="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4"
-                  >
-                    Simple Watch
-                  </h3>
-
-                  <p class="mt-1 text-sm text-gray-700">$150</p>
-                </div>
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -71,7 +50,22 @@
 </template>
 
 <script setup>
+import {ref} from "vue";
 
+const products = ref([
+  {
+    id: 1,
+    name: 'Basic Tee',
+    imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    price: '2400 Tenge'
+  },
+  {
+    id: 2,
+    name: 'Basic Tee',
+    imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    price: '2400 Tenge'
+  },
+]);
 </script>
 
 <style scoped>
