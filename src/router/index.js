@@ -13,6 +13,7 @@ const index = createRouter({
             redirect: '/404',
         },
         {path: "/profile", name: "Profile", component: () => import('../pages/ProfilePage.vue')},
+        {path: "/product/:id", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: true}, props: true},
     ]
 })
 
