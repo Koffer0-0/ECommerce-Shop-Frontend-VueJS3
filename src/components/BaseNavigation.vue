@@ -4,7 +4,7 @@
       <div class="flex h-16 items-center justify-between">
         <div class="flex-1 md:flex md:items-center md:gap-12">
           <a class="block text-teal-600" href="/">
-            <span class="sr-only">Home</span>
+            <span class="">Home</span>
           </a>
         </div>
         <div class="md:flex md:items-center md:gap-12">
