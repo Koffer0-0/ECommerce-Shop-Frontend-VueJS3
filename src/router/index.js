@@ -13,8 +13,9 @@ const index = createRouter({
             redirect: '/404',
         },
         {path: "/recommendations", name: "Recommend", component: () => import('../pages/RecommendationsPage.vue')},
-        {path: "/profile", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: true}},
-        {path: "/product/:id", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: true}, props: true},
+        {path: "/cart", name: "Cart", component: () => import('../pages/CartCheckupPage.vue'), meta: {requiresAuth: false}},
+        {path: "/profile", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}},
+        {path: "/product/:id", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}, props: true},
     ]
 })
 
