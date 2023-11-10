@@ -12,6 +12,7 @@ const index = createRouter({
             path: "/:catchAll(.*)", // Unrecognized path automatically matches 404
             redirect: '/404',
         },
+        {path: "/recommendations", name: "Recommend", component: () => import('../pages/RecommendationsPage.vue')},
         {path: "/profile", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: true}},
         {path: "/product/:id", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: true}, props: true},
     ]
