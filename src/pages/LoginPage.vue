@@ -119,11 +119,8 @@ const login = () => {
         router.push({path: '/'});
       })
       .catch((err) => {
-        if (err.response.status === 400) {
-        }
+        console.log(err)
       })
-      .finally(() => {
-      });
 }
 </script>
 
