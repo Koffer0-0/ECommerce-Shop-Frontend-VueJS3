@@ -18,7 +18,7 @@
           <a class="block" href="/">
             <span class="">Home</span>
           </a>
-          <form action="#" class="mt-8 grid grid-cols-6 gap-6">
+          <form @submit.prevent="register" class="mt-8 grid grid-cols-6 gap-6">
             <div class="col-span-6 sm:col-span-3">
               <label
                   for="FirstName"
@@ -32,6 +32,7 @@
                   id="FirstName"
                   name="first_name"
                   class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  v-model="first_name"
               />
             </div>
 
@@ -48,6 +49,7 @@
                   id="LastName"
                   name="last_name"
                   class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  v-model="last_name"
               />
             </div>
 
@@ -61,6 +63,7 @@
                   id="Email"
                   name="email"
                   class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  v-model="email"
               />
             </div>
 
@@ -77,6 +80,7 @@
                   id="Password"
                   name="password"
                   class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  v-model="password"
               />
             </div>
 
@@ -127,7 +131,25 @@
 </template>
 
 <script setup>
+import {useAuth} from "@/composables/useAuth";
+import {ref} from "vue";
 
+const {handleRegister} = useAuth();
+const email = ref()
+const password = ref()
+const first_name = ref()
+const last_name = ref()
+
+const register = async () => {
+  const payload = {
+    first_name: first_name.value,
+    last_name: last_name.value,
+    email: email.value,
+    password: password.value
+  }
+
+  await handleRegister(payload)
+}
 </script>
 
 <style scoped>

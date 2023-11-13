@@ -1,4 +1,4 @@
-import {SignIn} from "@/api/auth";
+import {SignIn, SignUp} from "@/api/auth";
 
 export function useAuth(){
 
@@ -11,9 +11,9 @@ export function useAuth(){
             }
         }
     }
-    const handleRegister = async (userId) => {
+    const handleRegister = async (payload) => {
         try {
-            return await SignIn()
+            return await SignUp(payload)
         } catch (err) {
             if (process.env.NODE_ENV === 'development') {
                 console.log(err);

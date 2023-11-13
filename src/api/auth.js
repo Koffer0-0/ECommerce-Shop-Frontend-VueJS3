@@ -9,7 +9,9 @@ export function SignIn(payload) {
 }
 
 export function SignUp(payload) {
-    return axiosInstance.post(API_URL + 'auth/users/', payload);
+    return axiosInstance.post(API_URL + 'auth/users/', payload, {
+        headers: {'Content-Type': 'application/x-www-form-urlencoded', 'accept': 'application/json'}
+    });
 }
 
 
