@@ -6,7 +6,8 @@
         <span class="">-- Home --</span>
       </a>
     </div>
-    <form action="" class="mx-auto mb-0 mt-8 max-w-md space-y-4 ">
+    <form @submit.prevent="login"
+          class="mx-auto mb-0 mt-8 max-w-md space-y-4 ">
       <div>
         <label for="email" class="sr-only">Email</label>
 
@@ -15,6 +16,7 @@
               type="email"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter email"
+              v-model="email"
           />
 
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -44,6 +46,7 @@
               type="password"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter password"
+              v-model="password"
           />
 
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -78,7 +81,6 @@
         </p>
 
         <button
-            type="submit"
             class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
         >
           Sign in
@@ -90,7 +92,39 @@
 </template>
 
 <script setup>
+import {useAuth} from "@/composables/useAuth";
+import router from "@/router";
+import {ref} from "vue";
 
+const {handleLogin} = useAuth();
+const email = ref()
+const password = ref()
+const login = () => {
+
+  const payload = {
+    username: email.value,
+    password: password.value
+  };
+
+  handleLogin(payload)
+      .then((response) => {
+        const accessToken = response.data.result.access_token;
+        const refreshToken = response.data.result.refresh_token;
+
+        if (localStorage.getItem('access_token') == null) {
+          localStorage.setItem('access_token', accessToken);
+          localStorage.setItem('refresh_token', refreshToken);
+        }
+
+        router.push({path: '/'});
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+        }
+      })
+      .finally(() => {
+      });
+}
 </script>
 
 <style scoped>
