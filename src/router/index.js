@@ -14,8 +14,19 @@ const index = createRouter({
         },
         {path: "/recommendations", name: "Recommend", component: () => import('../pages/RecommendationsPage.vue')},
         {path: "/cart", name: "Cart", component: () => import('../pages/CartCheckupPage.vue'), meta: {requiresAuth: false}},
-        {path: "/profile", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}},
-        {path: "/product/:id", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}, props: true},
+        {path: "/profile", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false},
+            children: [
+                {
+                    path: "order/:id",
+                    name: "Order",
+                    component: () => import('../components/DetailsList.vue'),
+                    meta: { requiresAuth: false },
+                    props: true
+                },
+            ]
+        },
+        {path: "/history", name: "History", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}},
+        {path: "/product/:id", name: "Product", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}, props: true},
     ]
 })
 
