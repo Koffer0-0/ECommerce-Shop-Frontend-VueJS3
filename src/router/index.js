@@ -12,7 +12,8 @@ const index = createRouter({
             path: "/:catchAll(.*)", // Unrecognized path automatically matches 404
             redirect: '/404',
         },
-        {path: "/recommendations", name: "Recommend", component: () => import('../pages/RecommendationsPage.vue')},
+        {path: "/products", name: "Products", component: () => import('../pages/ProductsPage.vue')},
+        {path: "/product/:id", name: "Product", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}, props: true},
         {path: "/cart", name: "Cart", component: () => import('../pages/CartCheckupPage.vue'), meta: {requiresAuth: false}},
         {path: "/profile", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false},
             children: [
@@ -26,7 +27,6 @@ const index = createRouter({
             ]
         },
         {path: "/history", name: "History", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}},
-        {path: "/product/:id", name: "Product", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}, props: true},
     ]
 })
 

@@ -1,11 +1,9 @@
 <template>
-  <recomendation-card></recomendation-card>
   <product-list></product-list>
-  <recommendation-card></recommendation-card>
 </template>
 
 <script setup>
-import RecommendationCard from "@/components/RecommendationCard.vue";
+import ProductList from "@/components/ProductList.vue";
 import {useProduct} from "@/composables/useProduct";
 import {onMounted} from "vue";
 
@@ -13,8 +11,11 @@ onMounted(() => {
 
 })
 const {
+  products,
+  product,
   recommendations,
-  handleRecommendationProducts,
+  handleFetchProducts,
+  handleFetchProductById,
 } = useProduct()
 </script>
 
