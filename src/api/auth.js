@@ -14,4 +14,8 @@ export function SignUp(payload) {
     });
 }
 
+export function GetMyDetails() {
+    return axios.get(API_URL + 'me/');
+}
+
 

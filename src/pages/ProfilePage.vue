@@ -60,9 +60,10 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import BaseTable from "@/components/BaseTable.vue";
 import router from "@/router";
+import {useAuth} from "@/composables/useAuth";
 
 const user = ref(
     {
@@ -71,6 +72,12 @@ const user = ref(
       email: "temka@gmail.com",
     }
 )
+
+onMounted(() => {
+  accountDetails()
+});
+
+const {user_change, accountDetails} = useAuth()
 
 const viewOrder = (item) => {
   router.push({
