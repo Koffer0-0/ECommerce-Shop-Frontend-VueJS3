@@ -1,4 +1,5 @@
 <template>
+  <a class="block text-teal-600 my-2" @click="router.go(-1)"><span>&lt--</span>Back</a>
   <div class="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
     <dl class="-my-3 divide-y divide-gray-100 text-sm">
       <div
@@ -45,7 +46,7 @@
 </template>
 
 <script setup>
-
+import router from "@/router";
 </script>
 
 <style scoped>
