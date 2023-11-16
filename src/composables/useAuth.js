@@ -37,6 +37,7 @@ export function useAuth(){
             localStorage.removeItem('access_token')
         }
         router.push({path: '/'})
+        location.reload()
     }
 
     return {
