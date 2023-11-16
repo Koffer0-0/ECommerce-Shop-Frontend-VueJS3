@@ -13,7 +13,7 @@ const index = createRouter({
             redirect: '/404',
         },
         {path: "/products", name: "Products", component: () => import('../pages/ProductsPage.vue')},
-        {path: "/product/:id", name: "Product", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: false}, props: true},
+        {path: "/product/:id", name: "Product", component: () => import('../pages/ProductDetailsPage.vue'), meta: {requiresAuth: false}, props: true},
         {path: "/cart", name: "Cart", component: () => import('../pages/CartCheckupPage.vue'), meta: {requiresAuth: true}},
         {path: "/profile", name: "Profile", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: true},
             children: [
