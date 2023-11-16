@@ -8,10 +8,14 @@
           </a>
         </div>
         <div class="md:flex md:items-center md:gap-12">
-          <nav aria-label="Global" class="hidden md:block" v-if="authenticated">
+          <nav aria-label="Global" class="hidden md:block" >
             <ul class="flex items-center gap-6 text-sm">
+              <a class="text-gray-500 transition hover:text-gray-500/75" href="products">
+                All Products
+              </a>
               <li v-for="link in links" :key="link.name">
-                <a :class="link.class" :href="link.url">
+
+                <a :class="link.class" :href="link.url" v-if="authenticated">
                   {{ link.name }}
                 </a>
               </li>
