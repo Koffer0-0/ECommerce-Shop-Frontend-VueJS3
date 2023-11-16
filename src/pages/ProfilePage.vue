@@ -54,6 +54,7 @@
           <h3 class="text-sm font-medium">{{ user.email }}</h3>
         </div>
       </div>
+      <button @click="logout">Log out</button>
     </div>
   </div>
 
@@ -77,7 +78,7 @@ onMounted(() => {
   accountDetails()
 });
 
-const {user_change, accountDetails} = useAuth()
+const {logout, accountDetails} = useAuth()
 
 const viewOrder = (item) => {
   router.push({

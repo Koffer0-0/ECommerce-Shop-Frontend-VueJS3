@@ -1,5 +1,6 @@
 import {GetMyDetails, SignIn, SignUp} from "@/api/auth";
 import {ref} from "vue";
+import router from "@/router";
 
 export function useAuth(){
     const user = ref()
@@ -30,8 +31,17 @@ export function useAuth(){
             console.log(err)
         }
     }
+
+    const logout = () => {
+        if (localStorage.getItem('access_token') !== null) {
+            localStorage.removeItem('access_token')
+        }
+        router.push({path: '/'})
+    }
+
     return {
         user,
+        logout,
         handleRegister,
         handleLogin,
         accountDetails
