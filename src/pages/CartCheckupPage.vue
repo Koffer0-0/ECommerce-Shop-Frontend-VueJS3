@@ -81,8 +81,8 @@
 
               <div class="flex justify-end">
                 <a
-                    href="#"
                     class="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                    @click="createOrder"
                 >
                   Checkout
                 </a>
@@ -96,14 +96,51 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
-
-const total = computed( () => {
-  return 1000
-})
-import { useCart } from "@/composables/useCart";
+import {computed, onMounted, ref, watch} from 'vue';
+import {useCart} from "@/composables/useCart";
+import {useOrder} from "@/composables/useOrder";
+import {useAuth} from "@/composables/useAuth";
 
 const { cartItems, removeFromCart, updateQuantity } = useCart();
+const { handleCheckout } = useOrder();
+const { accountDetails } = useAuth();
+const currentUser = ref()
+
+const total = computed(() => {
+  if (cartItems) {
+    return cartItems.value.reduce((acc, item) => acc + item.quantity * item.price, 0);
+  } else {
+    return 0
+  }
+});
+
+function loadCart() {
+  const cartStorage = sessionStorage.getItem('cart');
+  cartItems.value = JSON.parse(cartStorage);
+}
+
+function createOrder() {
+  const orderItems = cartItems.value.map(item => item._id); // Assuming you need product IDs for the order
+  const orderTotal = total.value.toString();
+
+  const payload = {
+    date: new Date().toISOString(),
+    total: orderTotal,
+    user: currentUser.value.data._id, // Or however you get the current user's ID
+    items: orderItems
+  };
+
+  handleCheckout(payload);
+}
+const getCurrentUser = async () => {
+  currentUser.value = await accountDetails()
+}
+
+onMounted(() => {
+  loadCart()
+  getCurrentUser()
+});
+
 </script>
 
 <style scoped>
