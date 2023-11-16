@@ -23,10 +23,10 @@
 
         <div class="lg:col-span-2 lg:py-8">
           <ul class="grid grid-cols-2 gap-4">
-            <li v-for="product in products" :key="product.id">
-              <router-link :to="`/product/${product.id}`"  class="block group">
+            <li v-for="product in products" :key="product._id">
+              <router-link :to="`/product/${product._id}`"  class="block group">
                 <img
-                    :src="product.imageUrl"
+                    :src="product.imageURL"
                     :alt="product.name"
                     class="object-cover w-full rounded aspect-square"
                 />
@@ -50,22 +50,21 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import {useProduct} from "@/composables/useProduct";
 
-const products = ref([
-  {
-    id: 1,
-    name: 'Basic Tee',
-    imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    price: '2400 Tenge'
-  },
-  {
-    id: 2,
-    name: 'Basic Tee',
-    imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    price: '2400 Tenge'
-  },
-]);
+const products = ref([]);
+
+const {handleRecommendationProducts} = useProduct()
+onMounted(() => {
+  recommendations()
+})
+
+const recommendations = async () => {
+  const result = await handleRecommendationProducts()
+  products.value = result.data
+}
+
 </script>
 
 <style scoped>
