@@ -21,11 +21,11 @@
           </svg>
         </span>
 
-        <div>
-          <p class="text-2xl font-medium text-gray-900">240.94 Tenge</p>
+<!--        <div>-->
+<!--          <p class="text-2xl font-medium text-gray-900">240.94 Tenge</p>-->
 
-          <p class="text-sm text-gray-500">Total Spent</p>
-        </div>
+<!--          <p class="text-sm text-gray-500">Total Spent</p>-->
+<!--        </div>-->
       </article>
     </div>
     <div class="h-32 rounded-lg lg:col-span-2">
