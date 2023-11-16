@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 
 const links = ref([
   {name: 'History', url: '/history', class: 'text-gray-500 transition hover:text-gray-500/75'},
@@ -72,7 +72,15 @@ const actions = ref([
   {name: 'Login', url: '/login', class: 'rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow'},
   {name: 'Register', url: '/register', class: 'rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600'},
 ]);
-const authenticated = ref(true)
+
+const authenticated = ref()
+onMounted(() => {
+  if (localStorage.getItem('access_token') == null) {
+    authenticated.value = false
+  } else [
+    authenticated.value = true
+  ]
+})
 defineProps({
   msg: {
     type: String,
