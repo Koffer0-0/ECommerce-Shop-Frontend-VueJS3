@@ -87,6 +87,9 @@
         </button>
 
       </div>
+      <div>
+        {{message}}
+      </div>
     </form>
   </div>
 </template>
@@ -98,29 +101,25 @@ import {ref} from "vue";
 
 const {handleLogin} = useAuth();
 const email = ref()
+const message = ref()
 const password = ref()
-const login = () => {
+const login = async () => {
 
   const payload = {
-    username: email.value,
+    email: email.value,
     password: password.value
   };
 
-  handleLogin(payload)
-      .then((response) => {
-        const accessToken = response.data.result.access_token;
-        const refreshToken = response.data.result.refresh_token;
-
-        if (localStorage.getItem('access_token') == null) {
-          localStorage.setItem('access_token', accessToken);
-          localStorage.setItem('refresh_token', refreshToken);
-        }
-
-        router.push({path: '/'});
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+  const response = await handleLogin(payload)
+  if (response.message) {
+    message.value = response.message
+  } else {
+    const accessToken = response.data.access_token;
+    if (localStorage.getItem('access_token') == null) {
+      localStorage.setItem('access_token', accessToken);
+    }
+    router.push({path: '/'});
+  }
 }
 </script>
 

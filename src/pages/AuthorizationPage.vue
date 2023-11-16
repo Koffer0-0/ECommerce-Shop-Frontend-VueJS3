@@ -67,7 +67,7 @@
               />
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
+            <div class="col-span-6">
               <label
                   for="Password"
                   class="block text-sm font-medium text-gray-700"
@@ -81,22 +81,6 @@
                   name="password"
                   class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   v-model="password"
-              />
-            </div>
-
-            <div class="col-span-6 sm:col-span-3">
-              <label
-                  for="PasswordConfirmation"
-                  class="block text-sm font-medium text-gray-700"
-              >
-                Password Confirmation
-              </label>
-
-              <input
-                  type="password"
-                  id="PasswordConfirmation"
-                  name="password_confirmation"
-                  class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
               />
             </div>
 
@@ -142,9 +126,9 @@ const last_name = ref()
 
 const register = async () => {
   const payload = {
+    email: email.value,
     first_name: first_name.value,
     last_name: last_name.value,
-    email: email.value,
     password: password.value
   }
 
