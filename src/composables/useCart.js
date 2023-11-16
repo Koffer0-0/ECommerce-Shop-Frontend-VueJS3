@@ -1,8 +1,15 @@
 // composables/useCart.js
 
-import { ref } from 'vue';
+import {ref, watch} from 'vue';
+const cartItems = ref([]);
 
-export const cartItems = ref([]);
+// Function to load the cart from sessionStorage
+
+// Persist cart items in sessionStorage with a timestamp
+watch(cartItems, (cart) => {
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+}, { deep: true });
+
 
 export function useCart() {
     function addToCart(product) {
@@ -12,6 +19,7 @@ export function useCart() {
         } else {
             cartItems.value.push({ ...product, quantity: 1 });
         }
+        console.log('Added to cart', cartItems.value); // Debugging
     }
 
     function removeFromCart(productId) {
@@ -28,5 +36,7 @@ export function useCart() {
         }
     }
 
-    return { addToCart, removeFromCart, updateQuantity, cartItems };
-}
+    return { cartItems, addToCart, removeFromCart, updateQuantity }}
+
+// Export cartItems separately
+export { cartItems };
