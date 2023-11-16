@@ -14,19 +14,6 @@ export function SignUp(payload) {
     });
 }
 
-export function AdminSignIn(payload) {
-    return axios.post(API_URL + 'auth/admin/login', payload, {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded', 'accept': 'application/json'}
-    });
-}
-
-export function AdminSignUp(payload) {
-    return axiosInstance.post(API_URL + 'auth/admin/signup', payload, {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded', 'accept': 'application/json'}
-    });
-}
-
-
 export function GetMyDetails() {
     const token = localStorage.getItem('access_token');
     return axios.get(API_URL + 'auth/user/me', {
