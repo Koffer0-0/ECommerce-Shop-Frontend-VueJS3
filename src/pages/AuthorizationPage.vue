@@ -106,6 +106,7 @@
                 Already have an account?
                 <a href="/login" class="text-gray-700 underline">Log in</a>.
               </p>
+              {{message}}
             </div>
           </form>
         </div>
@@ -117,12 +118,15 @@
 <script setup>
 import {useAuth} from "@/composables/useAuth";
 import {ref} from "vue";
+import router from "@/router";
 
 const {handleRegister} = useAuth();
 const email = ref()
 const password = ref()
 const first_name = ref()
 const last_name = ref()
+const message = ref()
+
 
 const register = async () => {
   const payload = {
@@ -132,7 +136,13 @@ const register = async () => {
     password: password.value
   }
 
-  await handleRegister(payload)
+  const response = await handleRegister(payload)
+  if (response.message) {
+    message.value = response.message
+  }
+  if (response.message === "User created"){
+    router.push({path: '/'});
+  }
 }
 </script>
 

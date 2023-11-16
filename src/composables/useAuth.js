@@ -18,9 +18,10 @@ export function useAuth(){
         try {
             return await SignUp(payload)
         } catch (err) {
-            if (process.env.NODE_ENV === 'development') {
-                console.log(err);
-            }
+            // if (process.env.NODE_ENV === 'development') {
+            //     console.log(err);
+            // }
+            return err.response.data
         }
     }
 
