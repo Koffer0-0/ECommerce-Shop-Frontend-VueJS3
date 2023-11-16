@@ -70,7 +70,7 @@ import {onMounted, ref} from "vue";
 import router from "@/router";
 
 const links = ref([
-  {name: 'History', url: '/history', class: 'text-gray-500 transition hover:text-gray-500/75'},
+  // {name: 'History', url: '/history', class: 'text-gray-500 transition hover:text-gray-500/75'},
   {name: 'Profile', url: '/profile', class: 'text-gray-500 transition hover:text-gray-500/75'},
 ]);
 
