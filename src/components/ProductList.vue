@@ -88,6 +88,7 @@ import { useCart } from "@/composables/useCart";
 import { onMounted, ref } from "vue";
 import { useProduct } from "@/composables/useProduct";
 import axios from "axios";
+import {API_URL} from "@/utils/consts";
 
 const { handleFetchProducts } = useProduct();
 const { addToCart } = useCart();
@@ -107,7 +108,7 @@ async function applySort() {
   const [sortBy, order] = sortOption.value.split(',');
 
   try {
-    const response = await axios.get('product/products', {
+    const response = await axios.get(API_URL + 'product/products', {
       params: {sortBy, order}
     });
     // Assuming you have a reactive variable to store products
