@@ -95,10 +95,15 @@ const productDetails = async (productId) => {
   product.value = result.data
 }
 const { addToCart } = useCart();
+import { inject } from 'vue';
 
+const toast = inject('toast');
+
+// Example usage
 // Add a product to the cart
 function handleAddToCart(product) {
   addToCart(product);
+  toast.showToast('This is a toast message!');
 }
 </script>
 
