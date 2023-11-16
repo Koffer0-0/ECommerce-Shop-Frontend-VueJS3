@@ -44,7 +44,13 @@ import {useRoute} from "vue-router";
 
 const route = useRoute();
 
-const order = ref({id: 1, amount:5000, date: "12.10.2023", details:[{name:"rubashka", quantity: 1, price: 1233},{name:"futbolka", quantity: 2, price:1233}]})
+const order = ref({
+  id: 1, amount:5000, date: "12.10.2023", details:
+      [
+        {name:"rubashka", quantity: 1, price:1233},
+        {name:"futbolka", quantity: 2, price:1233}
+      ]
+})
 const {handleFetchOrderById} = useOrder()
 onMounted(() => {
   const orderId = route.params.id;
