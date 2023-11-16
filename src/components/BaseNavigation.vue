@@ -94,7 +94,6 @@ defineProps({
 })
 
 const goToCart = () => {
-  console.log("gay")
   router.push({name: 'Cart'})
 }
 </script>
