@@ -28,7 +28,9 @@ export function useAuth(){
         try {
             return await GetMyDetails()
         } catch (err) {
-            console.log(err)
+            if (err.response.data.error === "jwt expired") {
+                localStorage.removeItem('access_token')
+            }
         }
     }
 
