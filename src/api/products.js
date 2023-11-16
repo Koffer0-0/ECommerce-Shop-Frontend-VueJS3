@@ -9,5 +9,5 @@ export function getProductByID(productId) {
     return axios.get(API_URL + `product/${productId}`);
 }
 export function getRecommendations() {
-    return axios.get(API_URL + '/recommendations');
+    return axios.get(API_URL + 'product/recommendations');
 }
