@@ -8,6 +8,9 @@
         </th><th class="whitespace-nowrap px-3 py-2 font-medium text-gray-900">
           Date
         </th>
+        <th class="whitespace-nowrap px-3 py-2 font-medium text-gray-900" >
+          Items
+        </th>
         <th class="whitespace-nowrap px-3 py-2 font-medium text-gray-900">
           Amount
         </th>
@@ -17,11 +20,19 @@
 
       <tbody class="divide-y divide-gray-200 text-center" v-for="order in orders">
         <tr>
-          <td class="whitespace-nowrap px-3 py-2 text-gray-700 text-left">{{ order.id }}</td>
-          <td class="whitespace-nowrap px-3 py-2 text-gray-700">{{ order.date }}</td>
-          <td class="whitespace-nowrap px-3 py-2 text-gray-700">{{ order.amount }}</td>
+          <td class="whitespace-nowrap px-3 py-2 text-gray-700 text-left">{{ order._id }}</td>
+          <td class="whitespace-nowrap px-3 py-2 text-gray-700">{{ formatDate(order.date) }}</td>
+          <td class="whitespace-nowrap px-3 py-2 text-gray-700">
+            <div class="flex text-center space-x-2" v-for="item in order.items" :key="item._id">
+            <div class="text-xs">
+              <div>{{ item.name }}</div>
+              <div class="text-gray-500">{{ item.price }} Tenge</div>
+            </div>
+          </div>
+          </td>
+          <td class="whitespace-nowrap px-3 py-2 text-gray-700">{{ order.total }}</td>
           <td class="whitespace-nowrap px-3 py-2">
-            <slot name="view" :item="order.id"></slot>
+            <slot name="view" :item="order._id"></slot>
           </td>
         </tr>
         </tbody>
@@ -29,6 +40,10 @@
   </div>
 </template>
 <script setup>
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toISOString().split('T')[0]; // Splits at 'T' and returns the date part
+}
 defineProps({
   orders: {
     type: Array,
