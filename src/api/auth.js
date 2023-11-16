@@ -28,7 +28,12 @@ export function AdminSignUp(payload) {
 
 
 export function GetMyDetails() {
-    return axios.get(API_URL + 'me/');
+    const token = localStorage.getItem('access_token');
+    return axios.get(API_URL + 'auth/user/me', {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
 }
 
 

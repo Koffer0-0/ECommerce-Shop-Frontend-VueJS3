@@ -26,7 +26,7 @@ export function useAuth(){
 
     const accountDetails = async () => {
         try {
-            const user = await GetMyDetails()
+            return await GetMyDetails()
         } catch (err) {
             console.log(err)
         }

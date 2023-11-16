@@ -50,8 +50,8 @@
             class="h-16 w-16 rounded-full object-cover"
         />
         <div>
-          <h3 class="text-lg font-medium">{{ user.first_name }} {{ user.last_name }}</h3>
-          <h3 class="text-sm font-medium">{{ user.email }}</h3>
+          <h3 class="text-lg font-medium">{{ computedUser.first_name }} {{ computedUser.last_name }}</h3>
+          <h3 class="text-sm font-medium">{{ computedUser.email }}</h3>
         </div>
       </div>
       <button @click="logout">Log out</button>
@@ -61,25 +61,31 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import BaseTable from "@/components/BaseTable.vue";
 import router from "@/router";
 import {useAuth} from "@/composables/useAuth";
 
 const user = ref(
     {
-      first_name: "Akishev",
-      last_name: "Temir",
-      email: "temka@gmail.com",
+      first_name: "",
+      last_name: "",
+      email: "",
     }
 )
-
+const computedUser = computed(() =>{
+  return user.value
+})
 onMounted(() => {
-  accountDetails()
+  handleGetUserInfo()
 });
 
 const {logout, accountDetails} = useAuth()
 
+const handleGetUserInfo = async () => {
+  const result = await accountDetails()
+  user.value= result.data
+}
 const viewOrder = (item) => {
   router.push({
     name: "Order",
