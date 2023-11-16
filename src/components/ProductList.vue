@@ -242,8 +242,14 @@
                 <span class="sr-only"> Regular Price </span>
                 <span class="tracking-wider text-gray-900"> {{ product.price }} </span>
               </p>
+
             </div>
           </router-link>
+          <button
+              @click="handleAddToCart(product)"
+              class="px-8 py-3 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+            ADD TO CART
+          </button>
         </li>
       </ul>
     </div>
@@ -251,39 +257,24 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
-import {useProduct} from "@/composables/useProduct";
-import {all} from "axios";
+import { useCart } from "@/composables/useCart";
+import { onMounted, ref } from "vue";
+import { useProduct } from "@/composables/useProduct";
 
-const {handleFetchProducts} = useProduct()
+const { handleFetchProducts } = useProduct();
+const { addToCart } = useCart();
 
-const products = ref([
-  {
-    _id: 1,
-    name: 'Basic Tee',
-    imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    price: '2400 Tenge',
-  },
-  {
-    id: 2,
-    name: 'Basic Tee',
-    imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    price: '2400 Tenge'
-  },
-  {
-    id: 3,
-    name: 'Basic Tee',
-    imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    price: '2400 Tenge'
-  },
-]);
+const products = ref([]);
 
-onMounted(() => {
-  allProductList()
-})
+onMounted(async () => {
+  const result = await handleFetchProducts();
+  products.value = result.data;
+});
 
-const allProductList = async () => {
-  const result = await handleFetchProducts()
-  products.value = result.data
+// Add a product to the cart
+function handleAddToCart(product) {
+
+  console.log(product)
+  addToCart(product);
 }
 </script>

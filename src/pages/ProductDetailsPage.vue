@@ -57,7 +57,9 @@
 
       <!-- Add to Cart Button -->
       <div class="mt-6">
-        <button class="px-8 py-3 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+        <button
+            @click="handleAddToCart(product)"
+            class="px-8 py-3 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
           ADD TO CART
         </button>
       </div>
@@ -69,6 +71,7 @@
 import {useProduct} from "@/composables/useProduct";
 import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
+import {useCart} from "@/composables/useCart";
 
 const {handleFetchProductById} = useProduct()
 const route = useRoute();
@@ -90,6 +93,12 @@ onMounted(() => {
 const productDetails = async (productId) => {
   const result = await handleFetchProductById(productId)
   product.value = result.data
+}
+const { addToCart } = useCart();
+
+// Add a product to the cart
+function handleAddToCart(product) {
+  addToCart(product);
 }
 </script>
 
