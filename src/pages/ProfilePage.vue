@@ -88,10 +88,13 @@ onMounted(() => {
 });
 
 const {logout, accountDetails} = useAuth()
+const {handleFetchOrders} = useOrder()
 
 const handleGetUserInfo = async () => {
   const result = await accountDetails()
-  user.value= result.data
+  user.value = result.data
+  const orders_response = handleFetchOrders()
+  orders.value = orders_response.data
 }
 const viewOrder = (item) => {
   router.push({
