@@ -1,22 +1,4 @@
 <template>
-  <!--
-  Heads up! 👋
-
-  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
-
-  Plugins:
-    - @tailwindcss/forms
--->
-
-  <!--
-  Heads up! 👋
-
-  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
-
-  Plugins:
-    - @tailwindcss/forms
--->
-
   <section>
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <header>
@@ -243,10 +225,10 @@
       </div>
 
       <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <li v-for="product in products" :key="product.id">
-          <router-link :to="`/product/${product.id}`" class="group block overflow-hidden">
+        <li v-for="product in products" :key="product._id">
+          <router-link :to="`/product/${product._id}`" class="group block overflow-hidden">
             <img
-                :src="product.imageUrl"
+                :src="product.imageURL"
                 :alt="product.name"
                 class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
             />
@@ -269,14 +251,18 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import {useProduct} from "@/composables/useProduct";
+import {all} from "axios";
+
+const {handleFetchProducts} = useProduct()
 
 const products = ref([
   {
-    id: 1,
+    _id: 1,
     name: 'Basic Tee',
     imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
-    price: '2400 Tenge'
+    price: '2400 Tenge',
   },
   {
     id: 2,
@@ -292,4 +278,12 @@ const products = ref([
   },
 ]);
 
+onMounted(() => {
+  allProductList()
+})
+
+const allProductList = async () => {
+  const result = await handleFetchProducts()
+  products.value = result.data
+}
 </script>
