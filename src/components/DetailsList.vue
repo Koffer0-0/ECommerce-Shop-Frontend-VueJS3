@@ -6,7 +6,7 @@
           class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4"
       >
         <dt class="font-medium text-gray-900">Order ID</dt>
-        <dd class="text-gray-700 sm:col-span-2">{{ order.id }}</dd>
+        <dd class="text-gray-700 sm:col-span-2">{{ order._id }}</dd>
       </div>
       <div
           class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4"
@@ -19,7 +19,7 @@
           class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4"
       >
         <dt class="font-medium text-gray-900">Total</dt>
-        <dd class="text-gray-700 sm:col-span-2">{{ order.amount }}</dd>
+        <dd class="text-gray-700 sm:col-span-2">{{ order.total }}</dd>
       </div>
 
       <div
@@ -27,7 +27,7 @@
       >
         <dt class="font-medium text-gray-900">Details</dt>
         <dd class="text-gray-700 sm:col-span-2">
-          <p v-for="item in order.details">
+          <p v-for="item in order.items">
             {{item.name}} x {{item.quantity}} = {{item.price}} Tenge
           </p>
         </dd>
@@ -38,18 +38,17 @@
 
 <script setup>
 import router from "@/router";
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import {useOrder} from "@/composables/useOrder";
 import {useRoute} from "vue-router";
 
 const route = useRoute();
 
 const order = ref({
-  id: 1, amount:5000, date: "12.10.2023", details:
-      [
-        {name:"rubashka", quantity: 1, price:1233},
-        {name:"futbolka", quantity: 2, price:1233}
-      ]
+  total: "",
+  date: "",
+  items: [],
+  _id: "",
 })
 const {handleFetchOrderById} = useOrder()
 onMounted(() => {
@@ -58,8 +57,16 @@ onMounted(() => {
 })
 
 const getOrderInfo = async (id) => {
-  order.value = await handleFetchOrderById(id)
+  const result = await handleFetchOrderById(id)
+  order.value = result.data
+  order.value.date = await formatDate(order.date)
 }
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0]
+}
+
 </script>
 
 <style scoped>
