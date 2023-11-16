@@ -29,7 +29,7 @@
       </article>
     </div>
     <div class="h-32 rounded-lg lg:col-span-2">
-      <BaseTable v-if="$route.name === 'Profile'">
+      <BaseTable v-if="$route.name === 'Profile'" :orders="orders">
         <template #view="{item}">
           <button
               class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
@@ -73,6 +73,13 @@ const user = ref(
       email: "",
     }
 )
+const orders = ref([
+  { id: 1, date: "12/12/2023", amount: "400"},
+  { id: 2, date: "12/12/2021", amount: "800"},
+  { id: 3, date: "12/12/2022", amount: "700"},
+  { id: 4, date: "12/12/2024", amount: "600"},
+  { id: 5, date: "12/12/2025", amount: "500"},
+])
 const computedUser = computed(() =>{
   return user.value
 })
