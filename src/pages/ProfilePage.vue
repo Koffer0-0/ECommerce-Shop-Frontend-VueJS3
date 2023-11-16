@@ -65,6 +65,7 @@ import {computed, onMounted, ref} from "vue";
 import BaseTable from "@/components/BaseTable.vue";
 import router from "@/router";
 import {useAuth} from "@/composables/useAuth";
+import {useOrder} from "@/composables/useOrder";
 
 const user = ref(
     {
@@ -73,13 +74,7 @@ const user = ref(
       email: "",
     }
 )
-const orders = ref([
-  { id: 1, date: "12/12/2023", amount: "400"},
-  { id: 2, date: "12/12/2021", amount: "800"},
-  { id: 3, date: "12/12/2022", amount: "700"},
-  { id: 4, date: "12/12/2024", amount: "600"},
-  { id: 5, date: "12/12/2025", amount: "500"},
-])
+const orders = ref([])
 const computedUser = computed(() =>{
   return user.value
 })
@@ -93,7 +88,8 @@ const {handleFetchOrders} = useOrder()
 const handleGetUserInfo = async () => {
   const result = await accountDetails()
   user.value = result.data
-  const orders_response = handleFetchOrders()
+  const orders_response = await handleFetchOrders()
+  console.log(orders_response)
   orders.value = orders_response.data
 }
 const viewOrder = (item) => {
