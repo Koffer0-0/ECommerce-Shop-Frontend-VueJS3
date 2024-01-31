@@ -93,10 +93,13 @@ import {API_URL} from "@/utils/consts";
 const { handleFetchProducts } = useProduct();
 const { addToCart } = useCart();
 
-const products = ref([]);
+const products = ref([
+
+]);
 
 onMounted(async () => {
   const result = await handleFetchProducts();
+
   products.value = result.data;
 });
 
