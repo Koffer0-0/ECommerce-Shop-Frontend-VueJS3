@@ -74,7 +74,34 @@ const user = ref(
       email: "",
     }
 )
-const orders = ref([])
+const orders = ref([
+  {
+    _id: 1,
+    date: "24.11.24",
+    items: [{
+      name: "Keychron1",
+      price: 45000,
+    }]
+  },
+  {
+    _id: 2,
+    date: "12.12.23",
+    items: [{
+      name: "Logitech",
+      price: 25000,
+    }]
+  },
+  {
+    _id: 3,
+    date: "25.12.23",
+    items: [
+      {
+        name: "Warmillo",
+        price: 50000,
+      }
+    ],
+  },
+])
 const computedUser = computed(() =>{
   return user.value
 })
@@ -89,8 +116,9 @@ const handleGetUserInfo = async () => {
   const result = await accountDetails()
   user.value = result.data
   const orders_response = await handleFetchOrders()
-  console.log(orders_response)
-  orders.value = orders_response.data
+  if (orders_response.data.length > 0) {
+    orders.value = orders_response.data
+  }
 }
 const viewOrder = (item) => {
   router.push({
