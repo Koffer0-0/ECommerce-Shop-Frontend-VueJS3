@@ -1,8 +1,8 @@
 <template>
   <div class="overflow-x-auto">
-    <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm border-2 border-b-emerald-200">
       <thead class="ltr:text-left rtl:text-right">
-      <tr>
+      <tr class="border-b-emerald-200">
         <th class="whitespace-nowrap px-3 py-2 font-medium text-gray-900 text-left">
           Transaction ID
         </th><th class="whitespace-nowrap px-3 py-2 font-medium text-gray-900">
@@ -42,7 +42,8 @@
 <script setup>
 function formatDate(dateString) {
   const date = new Date(dateString);
-  return date.toISOString().split('T')[0]; // Splits at 'T' and returns the date part
+  // return date.toISOString().split('T')[0]; // Splits at 'T' and returns the date part
+  return date // Splits at 'T' and returns the date part
 }
 defineProps({
   orders: {
