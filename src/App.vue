@@ -13,7 +13,12 @@ import BaseNavigation from "./components/BaseNavigation.vue";
 
 import { useToast } from './composables/useToast';
 import {provide} from "vue";
+import ToastComponent from "./components/ToastComponent.vue";
 
 const toast = useToast();
 provide('toast', toast);
 </script>
+<style lang="sass">
+*
+  font-family: "Magneto", Sans-serif
+</style>
