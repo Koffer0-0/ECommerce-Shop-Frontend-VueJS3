@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "AdminPanel"
+  name: "CreateProduct"
 }
 </script>
 

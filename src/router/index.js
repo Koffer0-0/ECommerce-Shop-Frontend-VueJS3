@@ -27,6 +27,47 @@ const index = createRouter({
             ]
         },
         {path: "/history", name: "History", component: () => import('../pages/ProfilePage.vue'), meta: {requiresAuth: true}},
+
+        { path: "/admin", name: "AdminPanel", component: () => import('../pages/admin/AdminPanel.vue'), meta: {fullScreen: true, requiresAuth: true},
+            children: [
+                {
+                    path: "products/list",
+                    name: "ProductList",
+                    component: () => import('../pages/admin/views/ProductList.vue'),
+                    meta: {
+                        breadcrumb: [
+                            {name: "Admin Home", link: "/admin"},
+                            {name: "Products"},
+                        ],
+                        requiresAuth: true
+                    },
+                },
+                {
+                    path: "products/create",
+                    name: "CreateProduct",
+                    component: () => import('../pages/admin/views/CreateProduct.vue'),
+                    meta: {
+                        breadcrumb: [
+                            {name: "Admin Home", link: "/admin"},
+                            {name: "Create Product"},
+                        ],
+                        requiresAuth: true
+                    },
+                },
+                {
+                    path: "user-management/users",
+                    name: "CreateProduct",
+                    component: () => import('../pages/admin/views/UserList.vue'),
+                    meta: {
+                        breadcrumb: [
+                            {name: "Admin Home", link: "/admin"},
+                            {name: "Users"},
+                        ],
+                        requiresAuth: true
+                    },
+                },
+            ]
+        },
     ]
 })
 

@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <header>
         <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">
-          Product Collection
+          Keyboards Collection
         </h2>
 
         <p class="mt-4 max-w-md text-gray-500">
@@ -57,7 +57,7 @@
             <img
                 :src="product.imageURL"
                 :alt="product.name"
-                class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
+                class="h-[100px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[300px]"
             />
 
             <div class="relative bg-white pt-3">
@@ -67,14 +67,14 @@
 
               <p class="mt-2">
                 <span class="sr-only"> Regular Price </span>
-                <span class="tracking-wider text-gray-900"> {{ product.price }} </span>
+                <span class="tracking-wider text-gray-900"> {{ product.price }} tenge</span>
               </p>
 
             </div>
           </router-link>
           <button
               @click="handleAddToCart(product)"
-              class="px-8 py-3 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+              class="px-7 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
             ADD TO CART
           </button>
         </li>
