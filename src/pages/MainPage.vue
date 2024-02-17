@@ -48,7 +48,7 @@
         <h1 class="text-3xl font-extrabold sm:text-5xl">
           Elevate Your Style.
           <strong class="font-extrabold text-amber-600 sm:block">
-            Discover Fashion Trends.
+            Discover Technology Trends.
           </strong>
         </h1>
 

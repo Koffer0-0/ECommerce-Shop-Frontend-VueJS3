@@ -50,11 +50,11 @@ const categories = [
     subcategories: [
       {
         name: "List",
-        routerLink: "products/list",
+        routerLink: "/admin/products",
       },
       {
         name: "Create",
-        routerLink: "products/create",
+        routerLink: "/admin/create-product",
       },
     ],
   },
@@ -63,7 +63,7 @@ const categories = [
     subcategories: [
       {
         name: "Users",
-        routerLink: "/user-management/users",
+        routerLink: "/admin/users",
       },
     ],
   },

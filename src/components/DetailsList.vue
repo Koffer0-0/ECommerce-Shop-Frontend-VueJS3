@@ -1,5 +1,7 @@
 <template>
-  <a class="block bg-amber-600 my-2" @click="router.go(-1)"><span>&lt--</span>Back</a>
+  <button class="bg-gray-200 rounded-xl my-2">
+    <a class="block w-16 " @click="router.go(-1)"><span>&lt--</span>Back</a>
+  </button>
   <div class="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
     <dl class="-my-3 divide-y divide-gray-100 text-sm">
       <div

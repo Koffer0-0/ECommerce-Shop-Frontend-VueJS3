@@ -20,5 +20,5 @@ provide('toast', toast);
 </script>
 <style lang="sass">
 *
-  font-family: "Magneto", Sans-serif
+  font-family: "Helvetica", Sans-serif
 </style>

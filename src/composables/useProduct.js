@@ -1,4 +1,4 @@
-import {getAllProducts, getProductByID, getRecommendations} from "@/api/products";
+import {createProduct, deleteProductByID, getAllProducts, getProductByID, getRecommendations} from "@/api/products";
 import {ref} from "vue";
 
 export function useProduct(){
@@ -32,6 +32,33 @@ export function useProduct(){
             }
         }
     }
+    const handleCreateProduct = async (payload) => {
+        try {
+            return await createProduct(payload)
+        } catch (err) {
+            if (process.env.NODE_ENV === 'development') {
+                console.log(err);
+            }
+        }
+    }
+    const handleUpdateProduct = async (productId, payload) => {
+        try {
+            return await updateProductByID(productid, payload)
+        } catch (err) {
+            if (process.env.NODE_ENV === 'development') {
+                console.log(err);
+            }
+        }
+    }
+    const handleDeleteProduct = async (productId) => {
+        try {
+            return await deleteProductByID(productId)
+        } catch (err) {
+            if (process.env.NODE_ENV === 'development') {
+                console.log(err);
+            }
+        }
+    }
 
     return {
         products,
@@ -40,5 +67,8 @@ export function useProduct(){
         handleFetchProducts,
         handleFetchProductById,
         handleRecommendationProducts,
+        handleCreateProduct,
+        handleUpdateProduct,
+        handleDeleteProduct,
     }
 }

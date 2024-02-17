@@ -1,4 +1,4 @@
-import {GetMyDetails, SignIn, SignUp} from "@/api/auth";
+import {getAllUsers, GetMyDetails, SignIn, SignUp} from "@/api/auth";
 import {ref} from "vue";
 import router from "@/router";
 
@@ -43,11 +43,23 @@ export function useAuth(){
         location.reload()
     }
 
+    const handleGetAllUsers = async () => {
+        try {
+            return await getAllUsers()
+        } catch (err) {
+            // if (process.env.NODE_ENV === 'development') {
+            //     console.log(err);
+            // }
+            return err.response.data
+        }
+    }
+
     return {
         user,
         logout,
         handleRegister,
         handleLogin,
-        accountDetails
+        accountDetails,
+        handleGetAllUsers
     }
 }

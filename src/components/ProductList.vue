@@ -99,7 +99,6 @@ const products = ref([
 
 onMounted(async () => {
   const result = await handleFetchProducts();
-
   products.value = result.data;
 });
 

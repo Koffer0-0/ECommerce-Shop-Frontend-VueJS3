@@ -23,4 +23,7 @@ export function GetMyDetails() {
     });
 }
 
+export function getAllUsers() {
+    return axiosInstance.get(API_URL + 'auth/all');
+}
 

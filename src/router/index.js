@@ -31,7 +31,7 @@ const index = createRouter({
         { path: "/admin", name: "AdminPanel", component: () => import('../pages/admin/AdminPanel.vue'), meta: {fullScreen: true, requiresAuth: true},
             children: [
                 {
-                    path: "products/list",
+                    path: "products",
                     name: "ProductList",
                     component: () => import('../pages/admin/views/ProductList.vue'),
                     meta: {
@@ -43,7 +43,7 @@ const index = createRouter({
                     },
                 },
                 {
-                    path: "products/create",
+                    path: "create-product",
                     name: "CreateProduct",
                     component: () => import('../pages/admin/views/CreateProduct.vue'),
                     meta: {
@@ -55,8 +55,8 @@ const index = createRouter({
                     },
                 },
                 {
-                    path: "user-management/users",
-                    name: "CreateProduct",
+                    path: "users",
+                    name: "UserList",
                     component: () => import('../pages/admin/views/UserList.vue'),
                     meta: {
                         breadcrumb: [
@@ -65,6 +65,13 @@ const index = createRouter({
                         ],
                         requiresAuth: true
                     },
+                },
+                {
+                    path: "product/:id",
+                    name: "EditProduct",
+                    component: () => import('../pages/admin/views/CreateProduct.vue'),
+                    meta: {requiresAuth: false},
+                    props: true
                 },
             ]
         },
