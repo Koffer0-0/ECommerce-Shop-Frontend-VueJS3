@@ -1,9 +1,9 @@
 <template>
-  <product-list></product-list>
+  <product-list2></product-list2>
 </template>
 
 <script setup>
-import ProductList from "@/components/ProductList.vue";
+import ProductList2 from "@/components/ProductList2.vue";
 import {useProduct} from "@/composables/useProduct";
 import {onMounted} from "vue";
 

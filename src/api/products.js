@@ -9,8 +9,14 @@ export function getAllProducts() {
 export function getProductByID(productId) {
     return axios.get(API_URL + `product/${productId}`);
 }
-export function getRecommendations() {
-    return axios.get(API_URL + 'product/recommendations');
+export function getRecommendations(params) {
+    return axios.get(API_URL + 'product/recommendations', { params });
+}
+export function getFilteredProducts(params) {
+    return axios.get(API_URL + 'product/filter', { params });
+}
+export function makeSearch(params) {
+    return axios.get(API_URL + 'product/search', { params });
 }
 
 export function createProduct(payload) {
