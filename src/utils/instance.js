@@ -29,7 +29,6 @@ axiosInstance.interceptors.response.use((response) => {
                 refresh_token: localStorage.getItem('refresh_token'),
             };
     
-            // const response = await axiosInstance.post(API_URL + 'auth/refresh', payload);
             const response = await fetch(API_URL + 'auth/refresh', {
                 method: 'POST',
                 headers: {
@@ -45,8 +44,6 @@ axiosInstance.interceptors.response.use((response) => {
                 // const data = await response.data.result;
                 const data = await response.json();
                 console.log("data: ", data);
-                // localStorage.setItem('access_token', data.access_token);
-                // localStorage.setItem('refresh_token', data.refresh_token);
                 localStorage.setItem('access_token', data.result.access_token);
                 localStorage.setItem('refresh_token', data.result.refresh_token);
     

@@ -122,7 +122,7 @@ const register = async () => {
   const payload = {
     email: email.value,
     password: password.value,
-    confirm_password: confirm_password.value,
+    confirmpassword: confirm_password.value,
     level: 1,
     roleID: 2,
   }
