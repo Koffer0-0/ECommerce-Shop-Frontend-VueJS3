@@ -1,4 +1,4 @@
-import {createOrders, getOrderById, getOrders} from "@/api/orders";
+import {createOrder, getOrderById, getOrders} from "@/api/client";
 
 export function useOrder(){
     const handleFetchOrders = async (id) => {
@@ -10,18 +10,9 @@ export function useOrder(){
             }
         }
     }
-    const handleFetchOrderById = async (id) => {
+    const handleCheckout = async (id, payload) => {
         try {
-            return await getOrderById(id)
-        } catch (err) {
-            if (process.env.NODE_ENV === 'development') {
-                console.log(err);
-            }
-        }
-    }
-    const handleCheckout = async (payload) => {
-        try {
-            return await createOrders(payload)
+            return await createOrder(id, payload)
         } catch (err) {
             if (process.env.NODE_ENV === 'development') {
                 console.log(err);
@@ -31,7 +22,6 @@ export function useOrder(){
 
     return {
         handleFetchOrders,
-        handleFetchOrderById,
         handleCheckout
     }
 }

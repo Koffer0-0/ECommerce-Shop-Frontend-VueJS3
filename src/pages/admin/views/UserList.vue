@@ -57,14 +57,12 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import {useAuth} from "@/composables/useAuth";
 
-const { handleGetAllUsers } = useAuth();
 const users = ref([]);
 
 onMounted(async () => {
-  const response = await handleGetAllUsers();
-  users.value = response.data
+  // const response = await handleGetAllUsers();
+  // users.value = response.data
 });
 </script>
 

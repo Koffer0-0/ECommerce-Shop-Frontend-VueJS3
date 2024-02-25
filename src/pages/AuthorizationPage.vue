@@ -16,43 +16,9 @@
       >
         <div class="max-w-xl lg:max-w-3xl">
           <a class="block" href="/">
-            <span class="">Home</span>
+            <span class="underline">Go Home</span>
           </a>
           <form @submit.prevent="register" class="mt-8 grid grid-cols-6 gap-6">
-            <div class="col-span-6 sm:col-span-3">
-              <label
-                  for="FirstName"
-                  class="block text-sm font-medium text-gray-700"
-              >
-                First Name
-              </label>
-
-              <input
-                  type="text"
-                  id="FirstName"
-                  name="first_name"
-                  class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  v-model="first_name"
-              />
-            </div>
-
-            <div class="col-span-6 sm:col-span-3">
-              <label
-                  for="LastName"
-                  class="block text-sm font-medium text-gray-700"
-              >
-                Last Name
-              </label>
-
-              <input
-                  type="text"
-                  id="LastName"
-                  name="last_name"
-                  class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  v-model="last_name"
-              />
-            </div>
-
             <div class="col-span-6">
               <label for="Email" class="block text-sm font-medium text-gray-700">
                 Email
@@ -83,16 +49,21 @@
                   v-model="password"
               />
             </div>
-
             <div class="col-span-6">
-              <p class="text-sm text-gray-500">
-                By creating an account, you agree to our
-                <a href="#" class="text-gray-700 underline">
-                  terms and conditions
-                </a>
-                and
-                <a href="#" class="text-gray-700 underline">privacy policy</a>.
-              </p>
+              <label
+                  for="conf_password"
+                  class="block text-sm font-medium text-gray-700"
+              >
+                Confirm Password
+              </label>
+
+              <input
+                  type="password"
+                  id="conf_password"
+                  name="password"
+                  class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  v-model="confirm_password"
+              />
             </div>
 
             <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
@@ -102,11 +73,10 @@
                 Create an account
               </button>
 
-<!--              <p class="mt-4 text-sm text-gray-500 sm:mt-0">-->
-<!--                Already have an account?-->
-<!--                <a href="/login" class="text-gray-700 underline">Log in</a>.-->
-<!--              </p>-->
-              {{message}}
+              <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                Already have an account?
+                <a href="/login" class="text-gray-700 underline">Log in</a>.
+              </p>
             </div>
           </form>
         </div>
@@ -123,20 +93,42 @@ import router from "@/router";
 const {handleRegister} = useAuth();
 const email = ref()
 const password = ref()
-const first_name = ref()
-const last_name = ref()
+const confirm_password = ref()
 const message = ref()
+const showPassword = ref(false)
+
+const isValidPassword = (password) => {
+  const minLength = password.length >= 8;
+  const hasNumber = /\d/.test(password);
+  const hasUpper = /[A-Z]/.test(password);
+  const hasLower = /[a-z]/.test(password);
+  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+  return minLength && hasNumber && hasUpper && hasLower && hasSpecial;
+};
 
 
 const register = async () => {
+  if (password.value !== confirm_password.value) {
+    message.value = 'Passwords do not match';
+    return;
+  }
+
+  if (!isValidPassword(password.value)) {
+    message.value = 'Password does not meet the criteria';
+    return;
+  }
+
   const payload = {
     email: email.value,
-    first_name: first_name.value,
-    last_name: last_name.value,
-    password: password.value
+    password: password.value,
+    confirm_password: confirm_password.value,
+    level: 1,
+    roleID: 2,
   }
 
   const response = await handleRegister(payload)
+  message.value = 'Registration successful!';
   if (response.message) {
     message.value = response.message
   }

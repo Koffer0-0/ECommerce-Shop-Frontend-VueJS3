@@ -347,11 +347,11 @@
 <script setup>
 import {useCart} from "@/composables/useCart";
 import {onMounted, ref} from "vue";
-import {useProduct} from "@/composables/useProduct";
+import {useItem} from "@/composables/useItem";
 import axios from "axios";
 import {API_URL} from "@/utils/consts";
 
-const {handleFetchProducts} = useProduct();
+const {handleFetchProducts} = useItem();
 const {addToCart} = useCart();
 
 const products = ref([]);

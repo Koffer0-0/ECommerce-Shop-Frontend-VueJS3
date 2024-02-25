@@ -1,4 +1,4 @@
-import {getAllUsers, GetMyDetails, SignIn, SignUp} from "@/api/auth";
+import { getUserInfoByEmail, SignIn, SignUp} from "@/api/auth";
 import {ref} from "vue";
 import router from "@/router";
 
@@ -8,9 +8,6 @@ export function useAuth(){
         try {
             return await SignIn(payload)
         } catch (err) {
-            // if (process.env.NODE_ENV === 'development') {
-            //     console.log(err);
-            // }
             return err.response.data
         }
     }
@@ -18,20 +15,15 @@ export function useAuth(){
         try {
             return await SignUp(payload)
         } catch (err) {
-            // if (process.env.NODE_ENV === 'development') {
-            //     console.log(err);
-            // }
             return err.response.data
         }
     }
 
-    const accountDetails = async () => {
+    const accountDetails = async (email) => {
         try {
-            return await GetMyDetails()
+            return await getUserInfoByEmail(email)
         } catch (err) {
-            if (err.response.data.error === "jwt expired") {
-                localStorage.removeItem('access_token')
-            }
+            console.log(err)
         }
     }
 
@@ -43,23 +35,11 @@ export function useAuth(){
         location.reload()
     }
 
-    const handleGetAllUsers = async () => {
-        try {
-            return await getAllUsers()
-        } catch (err) {
-            // if (process.env.NODE_ENV === 'development') {
-            //     console.log(err);
-            // }
-            return err.response.data
-        }
-    }
-
     return {
         user,
         logout,
         handleRegister,
         handleLogin,
         accountDetails,
-        handleGetAllUsers
     }
 }

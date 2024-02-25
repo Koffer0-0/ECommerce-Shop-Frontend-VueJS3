@@ -4,7 +4,7 @@
 
 <script setup>
 import ProductList2 from "@/components/ProductList2.vue";
-import {useProduct} from "@/composables/useProduct";
+import {useItem} from "@/composables/useItem";
 import {onMounted} from "vue";
 
 onMounted(() => {
@@ -16,7 +16,7 @@ const {
   recommendations,
   handleFetchProducts,
   handleFetchProductById,
-} = useProduct()
+} = useItem()
 </script>
 
 <style scoped>

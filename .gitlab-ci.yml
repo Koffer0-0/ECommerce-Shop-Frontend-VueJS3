@@ -1,0 +1,41 @@
+stages:
+  - test
+  - compile
+  - deploy
+
+test-job:
+  script:
+    - there is no test implemented
+  tags:
+    - temka
+    - shell
+    - azure
+
+compile-job:
+  image: node:latest
+  stage: compile
+  script:
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin <<<$CI_REGISTRY_PASSWORD
+    - docker build -t $CI_REGISTRY_IMAGE .
+    - docker push $CI_REGISTRY_IMAGE
+    - echo "Compile success"
+  tags:
+    - temka
+    - shell
+    - azure
+
+deploy-job:
+  stage: deploy
+  script:
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin <<<$CI_REGISTRY_PASSWORD
+    - docker push $CI_REGISTRY_IMAGE
+    - docker stack deploy -c docker-compose.yml aitu
+    - echo "Deploy Success"
+  tags:
+    - temka
+    - shell
+    - azure
+
+cache:
+  paths:
+    - node_modules/

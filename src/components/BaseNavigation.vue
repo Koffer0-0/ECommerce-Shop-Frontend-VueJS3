@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex-1 md:flex md:items-center md:gap-12">
-          <a class="block text-amber-600 text-md" href="/">
+          <a class="block text-green-600 text-md" href="/">
             <span class="">Home</span>
           </a>
         </div>
@@ -76,8 +76,8 @@ const links = ref([
 ]);
 
 const actions = ref([
-  {name: 'Login', url: '/login', class: 'rounded-md bg-amber-600 px-5 py-2.5 text-sm font-medium text-white shadow'},
-  {name: 'Register', url: '/register', class: 'rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-bg-amber-600-600'},
+  {name: 'Login', url: '/login', class: 'rounded-md bg-green-600 px-5 py-2.5 text-sm font-medium text-white shadow'},
+  {name: 'Register', url: '/register', class: 'rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-bg-green-600-600'},
 ]);
 
 const authenticated = ref()

@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  asapfrontend:
+    image: registry.gitlab.com/timaak55/ecommerce-shop-frontend-vuejs3
+    ports:
+      - "80:5173"
+    networks:
+      - asa_network
+    deploy:
+      mode: replicated
+      replicas: 1
+
+networks:
+  asa_network:
+    driver: overlay
+    attachable: true
+  agent_network:
+    driver: overlay
+    attachable: true

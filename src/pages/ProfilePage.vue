@@ -13,7 +13,7 @@
     <!-- Profile and Orders -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
       <!-- User Info Card -->
-      <div class="bg-white rounded-lg shadow-xl p-6 ring-1 ring-gray-900/5 hover:ring-amber-500 transition-all duration-300">
+      <div class="bg-white rounded-lg shadow-xl p-6 ring-1 ring-gray-900/5 hover:ring-green-500 transition-all duration-300">
         <h2 class="text-2xl font-semibold text-gray-800 mb-6">Your Info</h2>
         <p class="text-md font-medium text-gray-600 mb-2">
           Name: <span class="text-gray-800">{{ computedUser.first_name }} {{ computedUser.last_name }}</span>
@@ -23,7 +23,7 @@
         </p>
         <button
             @click="logout"
-            class="mt-6 w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition"
+            class="mt-6 w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition"
         >
           Log out
         </button>
@@ -31,12 +31,12 @@
 
       <!-- Orders Section -->
       <div class="lg:col-span-2">
-        <div class="bg-white rounded-lg shadow-xl p-6 ring-1 ring-gray-900/5 hover:ring-amber-500 transition-all duration-300">
+        <div class="bg-white rounded-lg shadow-xl p-6 ring-1 ring-gray-900/5 hover:ring-green-500 transition-all duration-300">
           <h2 class="text-2xl font-semibold text-gray-800 mb-4">Recent Orders</h2>
           <BaseTable v-if="$route.name === 'Profile'" :orders="orders">
             <template #view="{ item }">
               <button
-                  class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-xs font-medium rounded-md text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+                  class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-xs font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                   @click="viewOrder(item)"
               >
                 View Details

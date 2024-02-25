@@ -35,11 +35,11 @@
 </template>
 
 <script setup>
-import {useProduct} from "@/composables/useProduct";
+import {useItem} from "@/composables/useItem";
 import {onMounted, ref} from "vue";
 import {useRoute, useRouter} from "vue-router";
 
-const {handleCreateProduct, handleFetchProductById, handleUpdateProduct} = useProduct()
+const {handleCreateProduct, handleFetchProductById, handleUpdateProduct} = useItem()
 const router = useRouter(); // Make sure to import `useRouter` from Vue Router
 const route = useRoute();
 const productID = ref(null)

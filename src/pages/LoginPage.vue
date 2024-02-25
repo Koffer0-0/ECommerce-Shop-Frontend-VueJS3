@@ -102,7 +102,7 @@ const login = async () => {
   if (response.message) {
     message.value = response.message
   } else {
-    const accessToken = response.data.access_token;
+    const accessToken = response.data.token;
     if (localStorage.getItem('access_token') == null) {
       localStorage.setItem('access_token', accessToken);
     }

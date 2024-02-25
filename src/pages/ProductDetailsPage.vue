@@ -68,12 +68,12 @@
   </div>
 </template>
 <script setup>
-import {useProduct} from "@/composables/useProduct";
+import {useItem} from "@/composables/useItem";
 import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
 import {useCart} from "@/composables/useCart";
 
-const {handleFetchProductById} = useProduct()
+const {handleFetchProductById} = useItem()
 const route = useRoute();
 
 const product = ref(

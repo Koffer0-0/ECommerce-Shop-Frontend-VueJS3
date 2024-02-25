@@ -57,11 +57,11 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useProduct } from "@/composables/useProduct";
+import { useItem } from "@/composables/useItem";
 import {useRouter} from "vue-router";
 const router = useRouter(); // Make sure to import `useRouter` from Vue Router
 
-const { handleFetchProducts, handleDeleteProduct } = useProduct();
+const { handleFetchProducts, handleDeleteProduct } = useItem();
 const products = ref([]);
 
 onMounted(async () => {
