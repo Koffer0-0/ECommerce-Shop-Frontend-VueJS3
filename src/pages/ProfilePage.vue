@@ -3,7 +3,7 @@
     <!-- Profile Header -->
     <div class="text-center mb-16">
       <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
-        Welcome Back, {{ computedUser.first_name }}!
+        Welcome Back, {{ computedUser.email }}!
       </h1>
       <p class="text-md text-gray-600">
         Manage your profile and orders conveniently.
@@ -15,9 +15,6 @@
       <!-- User Info Card -->
       <div class="bg-white rounded-lg shadow-xl p-6 ring-1 ring-gray-900/5 hover:ring-green-500 transition-all duration-300">
         <h2 class="text-2xl font-semibold text-gray-800 mb-6">Your Info</h2>
-        <p class="text-md font-medium text-gray-600 mb-2">
-          Name: <span class="text-gray-800">{{ computedUser.first_name }} {{ computedUser.last_name }}</span>
-        </p>
         <p class="text-md font-medium text-gray-600">
           Email: <span class="text-gray-800">{{ computedUser.email }}</span>
         </p>
@@ -59,39 +56,39 @@ import {useOrder} from "@/composables/useOrder";
 
 const user = ref(
     {
-      first_name: "",
-      last_name: "",
       email: "",
     }
-)
-const orders = ref([
-  {
-    _id: 1,
-    date: "24.11.24",
-    items: [{
-      name: "Keychron1",
-      price: 45000,
-    }]
-  },
-  {
-    _id: 2,
-    date: "12.12.23",
-    items: [{
-      name: "Logitech",
-      price: 25000,
-    }]
-  },
-  {
-    _id: 3,
-    date: "25.12.23",
-    items: [
-      {
-        name: "Warmillo",
-        price: 50000,
-      }
-    ],
-  },
-])
+);
+
+// const orders = ref([
+//   {
+//     _id: 1,
+//     date: "24.11.24",
+//     items: [{
+//       name: "Keychron1",
+//       price: 45000,
+//     }]
+//   },
+//   {
+//     _id: 2,
+//     date: "12.12.23",
+//     items: [{
+//       name: "Logitech",
+//       price: 25000,
+//     }]
+//   },
+//   {
+//     _id: 3,
+//     date: "25.12.23",
+//     items: [
+//       {
+//         name: "Warmillo",
+//         price: 50000,
+//       }
+//     ],
+//   },
+// ])
+
 const computedUser = computed(() =>{
   return user.value
 })

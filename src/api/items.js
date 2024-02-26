@@ -6,10 +6,7 @@ const URLS = {
     baseItemURL: `${API_URL}Shop/items`
 }
 export function getItemList() {
-    return axiosInstance.get(URLS.baseItemURL, {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-        }
+    return axios.get(URLS.baseItemURL, {
     });
 }
 export function getItemByID(productId) {
