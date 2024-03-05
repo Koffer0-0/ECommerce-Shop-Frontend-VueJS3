@@ -74,14 +74,16 @@
       </div>
     </div>
   </section>
-  <ProductList></ProductList>
+  <ProductList2></ProductList2>
+  <ChatBot></ChatBot>
 </template>
 
 <script setup>
 import RecommendationCard from "@/components/RecommendationCard.vue";
 import {useProduct} from "@/composables/useProduct";
 import {onMounted} from "vue";
-import ProductList from "@/components/ProductList.vue";
+import ProductList2 from "@/components/ProductList2.vue";
+import ChatBot from "@/components/ChatBot.vue";
 
 onMounted(() => {
 

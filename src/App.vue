@@ -5,7 +5,6 @@
   <main>
     <router-view/>
   </main>
-  <ToastComponent />
 </template>
 
 <script setup lang="ts">

@@ -329,16 +329,6 @@
           </ul>
         </div>
       </div>
-      <div class="hidden sm:block">
-        <label for="SortBy" class="sr-only">Sort By</label>
-        <select id="SortBy" class="h-10 rounded border-gray-300 text-sm" v-model="sortOption" @change="applySort">
-          <option value="">Sort By</option>
-          <option value="title,desc">Title, DESC</option>
-          <option value="title,asc">Title, ASC</option>
-          <option value="price,desc">Price, DESC</option>
-          <option value="price,asc">Price, ASC</option>
-        </select>
-      </div>
     </div>
   </section>
 
