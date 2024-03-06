@@ -1,7 +1,7 @@
 <template>
   <div id="chatbot" class="fixed bottom-5 right-5 bg-white rounded-lg shadow-lg">
     <div class="p-4">
-      <h2 class="text-lg font-semibold mb-2">Chatbot</h2>
+      <h4 class="text-lg font-semibold">Chatbot</h4>
       <ul v-if="chatHistory.length > 0" class="overflow-y-auto max-h-40 max-w-sm">
         <li v-for="(message, index) in chatHistory" :key="index" class="mb-2">
           <div v-if="message.author === 'user'" class="text-gray-800 flex">
@@ -22,6 +22,8 @@
   </div>
 </template>
 
+<!--TODO добавление колличества товаров-->
+<!--TODO чатбот кривой-->
 <script>
 import { askChat } from "@/api/chat";
 
