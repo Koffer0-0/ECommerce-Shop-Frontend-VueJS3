@@ -2,13 +2,13 @@
   <div id="chatbot" class="fixed bottom-5 right-5 bg-white rounded-lg shadow-lg">
     <div class="p-4">
       <h2 class="text-lg font-semibold mb-2">Chatbot</h2>
-      <ul v-if="chatHistory.length > 0" class="overflow-y-auto max-h-40">
+      <ul v-if="chatHistory.length > 0" class="overflow-y-auto max-h-40 max-w-sm">
         <li v-for="(message, index) in chatHistory" :key="index" class="mb-2">
-          <div v-if="message.author === 'user'" class="text-gray-800">
+          <div v-if="message.author === 'user'" class="text-gray-800 flex">
             <span class="font-bold">{{ message.author }}:</span>
             <span class="ml-2">{{ message.text }}</span>
           </div>
-          <div v-else class="text-gray-600">
+          <div v-else class="text-gray-600 flex">
             <span class="font-bold">Bot:</span>
             <span class="ml-2">{{ message.text }}</span>
           </div>
