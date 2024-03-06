@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-6">
 
     <!-- Column for additional images or navigation (hidden on small screens) -->
     <div class="hidden lg:block">
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Column for product details and options -->
-    <div class="col-span-1 md:col-span-2 lg:col-span-1 lg:col-start-3">
+    <div class="col-span-1 md:col-span-2 lg:col-span-1 lg:col-start-3 me-4 border-2 p-4">
       <!-- Product Name and Description -->
       <div>
         <h2 class="text-2xl font-bold text-gray-900">
@@ -27,7 +27,7 @@
           {{ product.description }}
         </p>
         <p class="mt-3 text-lg font-semibold text-gray-900">
-          {{ product.price }}
+          {{ product.price }} Tenge
         </p>
       </div>
 
